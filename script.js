@@ -16,7 +16,8 @@ async function fetchOSMOPrice() {
     try {
         const response = await fetch('https://api.binance.com/api/v3/ticker/price?symbol=OSMOUSDT');
         const data = await response.json();
-        const osmoPrice = data.price; // Adjust according to the API response structure
+        const osmoPrice = parseFloat(data.price).toFixed(2); // Format the price
+        document.getElementById('osmo-price').innerText = `OSMO: $${osmoPrice}`; // Update HTML element
         console.log(`OSMO Price: ${osmoPrice} USDT`);
     } catch (error) {
         console.error('Error fetching OSMO price:', error);
