@@ -12,5 +12,16 @@ async function fetchBTCPrice() {
     }
 }
 
+async function fetchOSMOPrice() {
+    try {
+        const response = await fetch('https://api.example.com/osmo-price'); // Replace with the actual API endpoint
+        const data = await response.json();
+        const osmoPrice = data.price; // Adjust according to the API response structure
+        console.log(`OSMO Price: ${osmoPrice} USDT`);
+    } catch (error) {
+        console.error('Error fetching OSMO price:', error);
+    }
+}
+
 setInterval(fetchBTCPrice, 1000); // Update every second
 fetchBTCPrice(); // Initial fetch
