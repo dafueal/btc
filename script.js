@@ -15,8 +15,10 @@ async function fetchBTCPrice() {
 async function fetchOSMOPrice() {
     try {
         const response = await fetch('https://api.osmosis.zone/v1/price/osmo');
+        console.log('Response Status:', response.status); // Log the response status
         const data = await response.json();
-        const osmoPrice = parseFloat(data.price).toFixed(2); // Format the price
+        console.log('Response Data:', data); // Log the received data
+        const osmoPrice = parseFloat(data.price).toFixed(3); // Format the price
         document.getElementById('osmo-price').innerText = `OSMO: $${osmoPrice}`; // Update HTML element
         console.log(`OSMO Price: ${osmoPrice} USDT`);
     } catch (error) {
@@ -27,4 +29,4 @@ async function fetchOSMOPrice() {
 setInterval(fetchBTCPrice, 2000); // Update every second
 setInterval(fetchOSMOPrice, 2000); // Update every second
 fetchBTCPrice(); // Initial fetch
-fetchOSMOPrice();
+fetchOSMOPrice(); // Initial fetch
